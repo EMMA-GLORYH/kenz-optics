@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Discover luxury spectacles at Kenzy Specs Shop. Timeless elegance for every style. Shop now for premium eyewear.">
+    <meta name="keywords" content="spectacles, glasses, luxury eyewear, fashion, Kenzy Specs">
+    <title>Kenzy Specs Shop - Luxury Spectacles</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Store",
+            "name": "Kenzy Specs Shop",
+            "description": "Luxury spectacles for timeless elegance.",
+            "url": "https://yourwebsite.com",
+            "image": "https://yourwebsite.com/logo.png"
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- Auth Check Modal -->
+    <div id="auth-check-modal" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 450px; text-align: center;">
+            <div style="font-size: 4rem; margin-bottom: 20px;">👋</div>
+            <h3 style="margin-bottom: 20px;">Welcome to Kenzy Specs Shop!</h3>
+            <p style="margin-bottom: 30px; color: var(--text-secondary); line-height: 1.7;">
+                Create an account to track your orders and enjoy a personalized shopping experience.
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 15px;">
+                <a href="signup.html" class="btn-primary" style="text-decoration: none;">
+                    Create Account
+                </a>
+                <a href="login.html" class="btn-secondary" style="text-decoration: none; text-align: center;">
+                    I Already Have an Account
+                </a>
+                <button onclick="continueAsGuest()" class="link"
+                    style="background: none; border: none; cursor: pointer; padding: 10px; font-size: 0.95rem;">
+                    Continue as Guest
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <a href="#main-content" class="skip-link">Skip to Content</a>
+
+    <header class="header">
+        <div class="header-content">
+            <div>
+                <h1>Kenz Optics</h1>
+                <p>Timeless Elegance in Every Frame</p>
+            </div>
+            <div class="header-actions">
+                <button id="cart-btn" class="cart-btn" aria-label="View Shopping Cart">🛒 Cart (<span
+                        id="cart-count">0</span>)</button>
+                <button id="admin-login-btn" class="btn-secondary" aria-label="Admin Login">Admin Login</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Elevate Your Style</h2>
+            <p>Discover premium spectacles crafted for sophistication and comfort.</p>
+            <a href="#shop-section" class="btn-primary">Shop Now</a>
+        </div>
+    </section>
+
+    <main class="container" id="main-content">
+        <section id="shop-section" class="shop-section">
+            <h2>Available Spectacles</h2>
+            <div class="filters">
+                <input type="text" id="search" placeholder="Search by name..." aria-label="Search products">
+                <select id="price-filter" aria-label="Filter by price">
+                    <option value="">All Prices</option>
+                    <option value="0-100">Under 100 GHS</option>
+                    <option value="100-200">100 GHS - 200 GHS</option>
+                    <option value="200+">200 GHS +</option>
+                </select>
+            </div>
+            <div id="product-list" class="grid" aria-live="polite">
+                <div class="loading" id="loading-indicator">Loading exquisite spectacles...</div>
+            </div>
+        </section>
+
+        <hr
+            style="margin: 60px 0; border: none; height: 1px; background: linear-gradient(to right, transparent, #e2e8f0, transparent);">
+
+        <section class="about-section">
+            <h2>About Us</h2>
+            <p>At <strong>Kenzy Specs Shop</strong>, we blend fashion and function to offer spectacles that enhance your
+                vision and
+                style. Our curated collection features high-quality materials and timeless designs. We believe that
+                eyewear should be a statement of personal elegance.</p>
+        </section>
+
+        <hr
+            style="margin: 60px 0; border: none; height: 1px; background: linear-gradient(to right, transparent, #e2e8f0, transparent);">
+
+        <section class="testimonials-section">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-slider">
+                <div class="testimonial">
+                    <p>"Amazing quality and style! The frames are lightweight yet durable. Highly recommend Kenzy
+                        Specs."</p>
+                    <strong>— Ama O., Accra</strong>
+                </div>
+                <div class="testimonial">
+                    <p>"Perfect fit and luxurious feel. The shopping experience was seamless, and delivery was fast."
+                    </p>
+                    <strong>— Kofi B., Kumasi</strong>
+                </div>
+                <div class="testimonial">
+                    <p>"I finally found a pair of spectacles that truly suits my face. Excellent service and great
+                        value."</p>
+                    <strong>— Adjoa M., Tema</strong>
+                </div>
+            </div>
+        </section>
+
+        <hr
+            style="margin: 60px 0; border: none; height: 1px; background: linear-gradient(to right, transparent, #e2e8f0, transparent);">
+
+        <section class="contact-section">
+            <h2>Contact Us</h2>
+            <p style="max-width: 600px; margin: 0 auto 30px; color: var(--text-secondary);">
+                Have questions? We're here to help! Reach out to us anytime.
+            </p>
+            <form id="contact-form" class="contact-form">
+                <input type="text" id="contact-name" placeholder="Your Name" required aria-label="Your Name"
+                    autocomplete="name">
+                <input type="email" id="contact-email" placeholder="Your Email" required aria-label="Your Email"
+                    autocomplete="email">
+                <textarea id="contact-message" placeholder="Your Message" rows="4" required
+                    aria-label="Your Message"></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+            <p id="contact-status" class="status-msg" aria-live="polite"></p>
+        </section>
+    </main>
+
+    <!-- Product Detail Modal -->
+    <div id="product-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"
+        aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal">&times;</span>
+            <div id="modal-details">
+                <h3 id="modal-title">Product Details</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cart-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="cart-modal-title"
+        aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-btn" id="close-cart">&times;</span>
+            <h3 id="cart-modal-title">Your Shopping Cart</h3>
+            <div id="cart-items">
+                <p>Your cart is currently empty.</p>
+            </div>
+            <p id="cart-total">Total: GHS 0.00</p>
+            <button class="btn-primary" id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal (Updated with centered small input) -->
+    <div id="admin-login-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="admin-login-title"
+        aria-hidden="true">
+        <div class="modal-content" style="max-width: 400px;">
+            <span class="close-btn" id="close-admin-login">&times;</span>
+            <h3 id="admin-login-title" style="text-align: center; margin-bottom: 10px;">Admin Access</h3>
+            <p style="text-align: center; color: var(--text-secondary); margin-bottom: 30px; font-size: 0.95rem;">
+                Enter admin password
+            </p>
+            <form id="admin-login-form">
+                <div class="form-group">
+                    <input type="password" id="admin-password" placeholder="Password" required
+                        aria-label="Admin Password" autocomplete="current-password"
+                        style="width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 0.95rem; text-align: center;">
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; margin-top: 15px;">Login</button>
+            </form>
+            <p id="login-error" class="error-msg" role="alert" aria-live="assertive"
+                style="text-align: center; margin-top: 15px;"></p>
+            <p style="margin-top: 20px; font-size: 0.85rem; color: var(--text-secondary); text-align: center;">
+                <em>Demo password: admin123</em>
+            </p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Kenzy Specs Shop. All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                    aria-label="LinkedIn">LinkedIn</a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GitHub</a>
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"
+                    aria-label="Instagram">Instagram</a>
+            </div>
+            <form id="newsletter-form" class="newsletter">
+                <input type="email" placeholder="Subscribe for fashion updates" required aria-label="Newsletter Email"
+                    autocomplete="email">
+                <button type="submit" class="btn-secondary">Subscribe</button>
+            </form>
+        </div>
+    </footer>
+
+    <script type="module" src="js/product-list.js"></script>
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/auth-check.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin panel for Kenzy Specs Shop - Manage products">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Panel - Kenz Optics</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin-panel.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="admin-header-content">
+            <div class="header-left">
+                <h1>Kenz Optics Dashboard</h1>
+                <p>Professional Inventory Management System</p>
+            </div>
+            <div class="header-right">
+                <a href="index.html" class="btn-secondary">← Back to Shop</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="admin-container">
+        <!-- Sidebar Navigation -->
+        <aside class="admin-sidebar">
+            <nav class="sidebar-nav">
+                <button class="nav-tab active" data-section="dashboard" onclick="switchSection('dashboard')">
+                    Dashboard
+                </button>
+                <button class="nav-tab" data-section="add-product" onclick="switchSection('add-product')">
+                    Add Product
+                </button>
+                <button class="nav-tab" data-section="manage-products" onclick="switchSection('manage-products')">
+                    Manage Products
+                </button>
+            </nav>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="admin-main">
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section-content active">
+                <h2>Dashboard Overview</h2>
+
+                <div class="stats-grid">
+                    <div class="stat-card stat-primary">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <h3 id="total-products">—</h3>
+                            <p>Total Products</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-success">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <h3 id="in-stock">—</h3>
+                            <p>In Stock</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-warning">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <h3 id="low-stock">—</h3>
+                            <p>Low Stock</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-danger">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <h3 id="out-of-stock">—</h3>
+                            <p>Out of Stock</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-card stat-inactive">
+                        <div class="stat-icon"></div>
+                        <div class="stat-info">
+                            <h3 id="inactive-products">—</h3>
+                            <p>Inactive Products</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn" onclick="switchSection('add-product')">
+                            Add New Product
+                        </button>
+                        <button class="action-btn" onclick="switchSection('manage-products')">
+                            View All Products
+                        </button>
+                        <button class="action-btn" onclick="location.reload()">
+                            Refresh Data
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Product Section -->
+            <section id="add-product" class="section-content">
+                <h2>Add New Product</h2>
+
+                <form id="addProductForm" class="product-form" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Product Name <span class="required">*</span></label>
+                            <input type="text" id="name" placeholder="e.g., Classic Aviator Sunglasses" required>
+                            <span id="name-error" class="error-msg"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Category <span class="required">*</span></label>
+                            <select id="category" required>
+                                <option value="">Select Category</option>
+                                <option value="Classic">Classic</option>
+                                <option value="Modern">Modern</option>
+                                <option value="Sports">Sports</option>
+                                <option value="Reading">Reading Glasses</option>
+                                <option value="Sunglasses">Sunglasses</option>
+                                <option value="Designer">Designer Frames</option>
+                                <option value="Kids">Kids Spectacles</option>
+                            </select>
+                            <span id="category-error" class="error-msg"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="price">Price (GHS) <span class="required">*</span></label>
+                            <input type="number" id="price" placeholder="150.00" min="0.01" step="0.01" required>
+                            <span id="price-error" class="error-msg"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="stock">Stock Quantity <span class="required">*</span></label>
+                            <input type="number" id="stock" placeholder="50" min="0" step="1" required>
+                            <span id="stock-error" class="error-msg"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="image-field-container">
+                        <label for="image">Image URL <span class="required">*</span></label>
+                        <input type="url" id="image" placeholder="https://example.com/image.jpg" required>
+                        <small style="display: block; margin-top: 8px; color: #64748b; font-size: 0.9rem;">
+                            💡 Paste an image URL to see instant preview. Try from <a
+                                href="https://unsplash.com/s/photos/glasses" target="_blank"
+                                style="color: var(--admin-secondary);">Unsplash</a> or <a
+                                href="https://www.pexels.com/search/eyeglasses/" target="_blank"
+                                style="color: var(--admin-secondary);">Pexels</a>
+                        </small>
+                        <span id="image-error" class="error-msg"></span>
+                        <!-- Image preview will be inserted here by JavaScript -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" placeholder="Describe the product features, materials, style..."
+                            rows="4"></textarea>
+                        <span id="description-error" class="error-msg"></span>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary" id="submit-btn">
+                            Save Product
+                        </button>
+                        <button type="reset" class="btn-secondary">
+                            Reset Form
+                        </button>
+                    </div>
+                </form>
+
+                <p id="statusMsg" class="status-msg"></p>
+            </section>
+
+            <!-- Manage Products Section -->
+            <section id="manage-products" class="section-content">
+                <div class="section-header">
+                    <h2>Manage Products</h2>
+                    <div class="header-actions">
+                        <input type="text" id="searchProducts" placeholder="🔍 Search products..." class="search-input">
+                        <select id="filterCategory" class="filter-select">
+                            <option value="">All Categories</option>
+                            <option value="Classic">Classic</option>
+                            <option value="Modern">Modern</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Reading">Reading Glasses</option>
+                            <option value="Sunglasses">Sunglasses</option>
+                            <option value="Designer">Designer Frames</option>
+                            <option value="Kids">Kids Spectacles</option>
+                        </select>
+                        <select id="filterStatus" class="filter-select">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="productsList" class="products-table-container">
+                    <p style="text-align: center; padding: 40px; color: var(--text-secondary);">
+                        Loading products...
+                    </p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Edit Product Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h3>Edit Product</h3>
+                <button class="close-btn" onclick="closeEditModal()">&times;</button>
+            </div>
+
+            <form id="editProductForm" class="product-form">
+                <input type="hidden" id="edit-id">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-name">Product Name <span class="required">*</span></label>
+                        <input type="text" id="edit-name" required>
+                        <span id="edit-name-error" class="error-msg"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-category">Category <span class="required">*</span></label>
+                        <select id="edit-category" required>
+                            <option value="Classic">Classic</option>
+                            <option value="Modern">Modern</option>
+                            <option value="Sports">Sports</option>
+                            <option value="Reading">Reading Glasses</option>
+                            <option value="Sunglasses">Sunglasses</option>
+                            <option value="Designer">Designer Frames</option>
+                            <option value="Kids">Kids Spectacles</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-price">Price (GHS) <span class="required">*</span></label>
+                        <input type="number" id="edit-price" min="0.01" step="0.01" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-stock">Stock Quantity <span class="required">*</span></label>
+                        <input type="number" id="edit-stock" min="0" step="1" required>
+                    </div>
+                </div>
+
+                <div class="form-group" id="edit-image-field-container">
+                    <label for="edit-image">Image URL <span class="required">*</span></label>
+                    <input type="url" id="edit-image" required>
+                    <small style="display: block; margin-top: 8px; color: #64748b; font-size: 0.9rem;">
+                        💡 Paste a new image URL to update the product image
+                    </small>
+                    <span id="edit-image-error" class="error-msg"></span>
+                    <!-- Image preview will be inserted here by JavaScript -->
+                </div>
+
+                <div class="form-group">
+                    <label for="edit-description">Description</label>
+                    <textarea id="edit-description" rows="4"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="update-btn">
+                        Update Product
+                    </button>
+                    <button type="button" class="btn-secondary" onclick="closeEditModal()">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script type="module" src="js/admin.js"></script>
+</body>
+
+</html>
